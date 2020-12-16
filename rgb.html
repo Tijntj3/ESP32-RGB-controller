@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .divide {margin:0;width:100vw;height:20vh;}
+            .sldcontrol {-webkit-appearance:none;margin-top:12.5vh;margin-left:20vw;width:60vw;height:1vh;background:#585858;outline:none;}
+            .sldcontrol::-webkit-slider-thumb {margin:0;-webkit-appearance:none;appearance:none;width:7vh;height:7vh;border-radius:100%;border-style:none;cursor: pointer;}
+            .sldcontrol::-moz-range-thumb {margin:0;width:7vh;height:7vh;border-radius:100%;border-style: none;cursor: pointer;}
+            #sldred::-webkit-slider-thumb {background:#FF6961;}
+            #sldred::-moz-range-thumb {background:#FF6961;}
+            #sldgreen::-webkit-slider-thumb {background:#77DD77;}
+            #sldgreen::-moz-range-thumb {background:#77DD77;}
+            #sldblue::-webkit-slider-thumb {background:#6CA0DC;}
+            #sldblue::-moz-range-thumb {background:#6CA0DC;}
+            .dot {margin:0;font-family:Arial;text-align:center;color:rgb(127,127,127);}
+        </style>
+        <script>
+            function setClr() {
+                var redslider = document.getElementById("sldred");
+                var greenslider = document.getElementById("sldgreen");
+                var blueslider = document.getElementById("sldblue");
+                var dotClr = document.getElementById("dotClr");
+                var dotText = document.getElementById("dotText");
+                dotClr.style.color = "rgb(" + redslider.value + "," + greenslider.value + "," + blueslider.value + ")";
+                dotText.style.color = "rgb(" + redslider.value + "," + greenslider.value + "," + blueslider.value + ")";}
+            function sendClr() {
+                var req = new XMLHttpRequest;
+                var redslider = document.getElementById("sldred");
+                var greenslider = document.getElementById("sldgreen");
+                var blueslider = document.getElementById("sldblue");
+                req.open("GET", "/?r" + redslider.value + "g" + greenslider.value + "b" + blueslider.value + "&", true);
+                req.send();}
+        </script>
+    </head>
+    <body style="margin: 0;background-color:#252526;display: block;">
+        <div class="divide">
+            <input class="sldcontrol" id="sldred" type="range" min="0" max="255" value="127" oninput="setClr()">
+        </div>
+        <div class="divide">
+            <input class="sldcontrol" id="sldgreen" type="range" min="0" max="255" value="127" oninput="setClr()">
+        </div>
+        <div class="divide">
+            <input class="sldcontrol" id="sldblue" type="range" min="0" max="255" value="127" oninput="setClr()">
+        </div>
+        <div class="divide">
+            <p class="dot" id="dotClr" style="font-size:20vh;line-height:20vh;cursor:pointer;" onclick="sendClr()">●</p>
+            <p class="dot" id="dotText" style="font-size:2vh;">Tijntj3</p>
+        </div>
+    </body>
+</html> 
